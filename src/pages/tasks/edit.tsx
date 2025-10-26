@@ -35,7 +35,7 @@ const TasksEditPage = () => {
   // modalProps -> It's an instance of Modal that manages modal state and actions like onOk, onCancel, etc.
   // close -> It's a function that closes the modal
   // queryResult -> It's an instance of useQuery from react-query
-  const { modalProps, close, queryResult } = useModalForm<Task>({
+  const { modalProps, close, query } = useModalForm<Task>({
     // specify the action to perform i.e., create or edit
     action: "edit",
     // specify whether the modal should be visible by default
@@ -47,9 +47,9 @@ const TasksEditPage = () => {
   });
 
   // get the data of the task from the queryResult
-  const { description, dueDate, users, title } = queryResult?.data?.data ?? {};
+  const { description, dueDate, users, title } = query?.data?.data ?? {};
 
-  const isLoading = queryResult?.isLoading ?? true;
+  const isLoading = query?.isLoading ?? true;
 
   return (
     <Modal

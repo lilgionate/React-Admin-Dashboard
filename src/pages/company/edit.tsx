@@ -11,16 +11,16 @@ import { businessTypeOptions, companySizeOptions, industryOptions } from '@/cons
 import { CompanyContactsTable } from './contacts-table';
 
 const EditPage = () => {
-  const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
+  const { saveButtonProps, formProps, formLoading, query } = useForm({
     redirect: false,
     meta: {
       gqlMutation: UPDATE_COMPANY_MUTATION
     }
   });
 
-  const { avatarUrl, name } = queryResult?.data?.data || {}
+  const { avatarUrl, name } = query?.data?.data || {}
 
-  const { selectProps, queryResult: queryResultUsers } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
+  const { selectProps, query: queryResultUsers } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
     resource: 'users',
     optionLabel: 'name',
     pagination: {

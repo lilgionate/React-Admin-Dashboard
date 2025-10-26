@@ -32,7 +32,7 @@ const Create = () => {
     }
   })
 
-  const { selectProps, queryResult } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
+  const { selectProps, query } = useSelect<GetFieldsFromList<UsersSelectQuery>>({
     resource: 'users',
     optionLabel: 'name',
     meta: {
@@ -66,7 +66,7 @@ const Create = () => {
               placeholder="Please select a sales owner"
               {...selectProps}
               options={
-                queryResult.data?.data.map((user) => ({
+                query.data?.data.map((user) => ({
                   value: user.id,
                   label: (
                     <SelectOptionWithAvatar 

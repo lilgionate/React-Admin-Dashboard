@@ -38,7 +38,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
    * queryResult -> contains the result of the query. For example, isLoading, data, error, etc.
    * https://refine.dev/docs/packages/react-hook-form/use-form/#queryresult
    */
-  const { saveButtonProps, formProps, queryResult } = useForm<
+  const { saveButtonProps, formProps, query } = useForm<
     /**
      * GetFields is used to get the fields of the mutation i.e., in this case, fields are name, email, jobTitle, and phone
      * https://refine.dev/docs/data/packages/nestjs-query/#getfields
@@ -76,14 +76,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
       gqlMutation: UPDATE_USER_MUTATION,
     },
   });
-  const { avatarUrl, name } = queryResult?.data?.data || {};
+  const { avatarUrl, name } = query?.data?.data || {};
 
   const closeModal = () => {
     setOpened(false);
   };
 
   // if query is processing, show a loading indicator
-  if (queryResult?.isLoading) {
+  if (query?.isLoading) {
     return (
       <Drawer
         open={opened}
